@@ -1,0 +1,29 @@
+PRD: Trend-Focused Single Feature
+
+Flutter AppApp Name: VibeCheck 2026
+
+Core Feature: AI Outfit Compatibility & Grooming Visualizer.
+
+1. Visual Language & UI Style (For Minimax m2.5)
+Design Trend: Bento Grid layout with Neumorphism 2.0 (soft shadows, high-quality depth).
+Color Palette: Deep Charcoal background (#121212) with Electric Cyan (#00F2FF) accents.
+Typography: Modern Sans-serif (Inter or Lexend) with heavy weights for headings.
+
+2. UI Components Breakdown (Provider Ready)A. 
+The Glassmorphic HeaderTop Bar: User profile avatar on the left, "Vibe Score" badge on the right.
+Style: BackdropFilter with blur effect.B. The "Style Input" Zone (Main Interaction)
+
+Feature: Ek minimalist image upload area jahan user apni photo ya kapdo ki photo drop kare.
+UI Element: A dashed-border container with a "Scan Vibe" button.
+State: UI change hona chahiye jab "Processing" state trigger ho (Lottie animation placeholder).
+
+C. Recommendation Bento Grid
+Slot 1 (Large): "The Verdict" - Ek card jo bataye ki outfit/grooming style face shape par kaisa lagega.
+Slot 2 (Medium): "Complementary Colors" - Color palette generator.
+Slot 3 (Small): "Quick Fix" - Text-based tips (e.g., "Add a silver chain" or "Trim the edges").
+
+3. Minimax m2.5 Prompt (Copy-Paste this)"Generate a single-file Flutter UI for an AI Style Assistant app called 'VibeCheck'.Use a Bento Grid layout for the dashboard.Implement a Dark Mode theme with #121212 background and Electric Cyan accents.Create a custom Image Upload Widget with a dashed border and glassmorphism effect.Include a 'Result Section' with three cards: 'Fit Score' (Circular Progress), 'Tone Match' (Color chips), and 'Expert Tip' (Text card).Technical Requirement: Keep all logic out. Use StatelessWidgets and mock data. Ensure all styling is in-line or via ThemeData. Use the GoogleFonts package for 'Lexend'.Make the UI responsive for mobile screens using LayoutBuilder."
+
+4. User Flow (Your Provider Integration Logic)Feature StageUI ComponentProvider Action (Your Part)IdleUpload PlaceholdernotifyListeners() when image is picked.ProcessingSkeleton LoaderTrigger API call to your Python/FastAPI wrapper.SuccessBento Grid DisplayUpdate UI state with model output (Score, Colors, Tips).
+
+5. 2026 Trend ChecklistMicro-interactions: Buttons should have a "press-in" depth effect.Edge-to-Edge: Use SafeArea but ensure the background gradients bleed to the edges.Zero Latency Feel: UI components should slide in from the bottom with a Curve.easeOutBack animation.
