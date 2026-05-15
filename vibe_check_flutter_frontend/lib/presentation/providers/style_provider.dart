@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import '../../model/style_result.dart';
-import '../../model/style_repository.dart';
+import '../../data/repository/style_result.dart';
+import '../../data/repository/style_repository.dart';
 
 enum AnalysisState { idle, processing, success }
 
@@ -10,14 +10,17 @@ class StyleProvider extends ChangeNotifier {
   AnalysisState _state = AnalysisState.idle;
   StyleResult? _result;
   String? _error;
+  String? _imageUrl;
 
   StyleProvider(this._repository);
 
   AnalysisState get state => _state;
   StyleResult? get result => _result;
   String? get error => _error;
+  String? get imageUrl => _imageUrl;
 
   Future<void> analyzeImage(String imagePath) async {
+    _imageUrl = imagePath;
     _state = AnalysisState.processing;
     _error = null;
     notifyListeners();
@@ -36,6 +39,7 @@ class StyleProvider extends ChangeNotifier {
     _state = AnalysisState.idle;
     _result = null;
     _error = null;
+    _imageUrl = null;
     notifyListeners();
   }
 }

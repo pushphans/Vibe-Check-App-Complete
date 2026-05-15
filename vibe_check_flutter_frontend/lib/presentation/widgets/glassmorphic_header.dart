@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_theme.dart';
-import '../../../core/colors/app_colors.dart';
+import 'package:provider/provider.dart';
+import '../../core/theme/app_theme.dart';
+import '../../core/colors/app_colors.dart';
+import '../providers/style_provider.dart';
 
 class GlassmorphicHeader extends StatelessWidget {
   const GlassmorphicHeader({super.key});
@@ -8,6 +10,9 @@ class GlassmorphicHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final provider = context.watch<StyleProvider>();
+    final result = provider.result;
+    final showVibe = provider.state == AnalysisState.success && result != null;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -30,7 +35,7 @@ class GlassmorphicHeader extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: AppTheme.neumorphicPressed(isDark),
                   ),
-                  child: Icon(Icons.person, color: AppTheme.textSecondary(isDark)),
+                  child: Icon(Icons.track_changes, color: AppColors.accent),
                 ),
                 const SizedBox(width: 14),
                 Text(
@@ -44,28 +49,29 @@ class GlassmorphicHeader extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              decoration: BoxDecoration(
-                color: AppTheme.background(isDark),
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: AppTheme.neumorphicPressed(isDark),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.bolt, color: AppColors.accent, size: 18),
-                  const SizedBox(width: 6),
-                  Text(
-                    'Vibe: 92',
-                    style: TextStyle(
-                      color: AppTheme.textPrimary(isDark),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
+            if (showVibe)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppTheme.background(isDark),
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: AppTheme.neumorphicPressed(isDark),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.bolt, color: AppColors.accent, size: 18),
+                    const SizedBox(width: 6),
+                    Text(
+                      'Vibe: ${result.vibeScore}',
+                      style: TextStyle(
+                        color: AppTheme.textPrimary(isDark),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),
